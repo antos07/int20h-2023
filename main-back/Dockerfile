@@ -18,9 +18,7 @@ WORKDIR /app
 COPY poetry.lock pyproject.toml /app/
 
 # Project initialization:
-RUN apt update  \
-    && apt install default-libmysqlclient-dev build-essential gnutls-bin -y \
-    && poetry config virtualenvs.create false \
+RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
 
 # Creating folders, and files for a project:
