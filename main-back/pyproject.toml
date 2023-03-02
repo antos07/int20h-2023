@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "main-back"
+version = "0.1.0"
+description = ""
+authors = ["antos07 <trotsenko.ant07@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^4.1.7"
+psycopg2-binary = "^2.9.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
