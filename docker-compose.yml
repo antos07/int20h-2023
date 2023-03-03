@@ -32,9 +32,34 @@ services:
     volumes:
       - main-back-data:/var/lib/postgresql/data
 
+  api:
+    build: "./api/"
+    ports:
+      - "5000:5000"
+    networks:
+      - api-back
+      - front
+    depends_on:
+      - api-db
+
+  api-db:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=api
+      - MONGO_INITDB_ROOT_USERNAME=api
+      - MONGO_INITDB_ROOT_PASSWORD=api
+    command: mongod
+    volumes:
+      - api-bd-data:/var/lib/mongo
+    networks:
+      - api-back
 networks:
   front:
   main-back:
+  api-back:
 
 volumes:
   main-back-data:
+  api-bd-data:
