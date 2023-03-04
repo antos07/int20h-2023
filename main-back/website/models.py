@@ -54,10 +54,17 @@ class Participation(models.Model):
 
 
 class Invitation(models.Model):
+    APPROVED = 'approved'
+    DECLINED = 'declined'
+    PENDING = 'pending'
+    STATUS_CHOICES = [(APPROVED, 'Approved'), (DECLINED, 'Declined'), (PENDING, 'Pending')]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_invitations_set')
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
     sent_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='sent_invitations_set')
     timestamp = models.DateTimeField(auto_now_add=True, editable=False, blank=True)
+    comment = models.TextField(blank=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=PENDING, blank=False)
 
     def __str__(self):
         return f"From {self.user} to {self.role}"
