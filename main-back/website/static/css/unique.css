@@ -29,7 +29,6 @@
         min-height: 1000px;
         align-content: center; 
         font-family: 'OpenSans, OpenSans-Regular';
-        background-image: url("reg-back.png");
         background-position: center; 
         background-repeat: no-repeat;
         background-size: cover; 
@@ -70,6 +69,21 @@
 .btn-log:hover {
     background-color: #f5e6cb;
 }
-a:check {
-    background-color: #FFE5B4;
+
+.form-field-wrapper>input {
+    display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  background-color: var(--bs-form-control-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
