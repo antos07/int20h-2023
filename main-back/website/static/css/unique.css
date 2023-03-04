@@ -25,3 +25,51 @@
     width: 30px;
     height: 30px;
 }
+.reg-back {
+        min-height: 1000px;
+        align-content: center; 
+        font-family: 'OpenSans, OpenSans-Regular';
+        background-image: url("reg-back.png");
+        background-position: center; 
+        background-repeat: no-repeat;
+        background-size: cover; 
+        overflow: hidden;
+
+}
+.forms {
+    margin-right: 20%;
+    position: absolute;
+    width: 50%;
+    border: 2px solid rgb(255, 194, 88);
+    padding: 26px;
+    background-color: white;
+    top: 28%;
+    transform: translateX(50%);
+    border-radius: 16px;
+}
+@media only screen and (max-width: 600px) {
+    .forms {
+        margin-right: 20%;
+        position: absolute;
+        width: 70%;
+        border: 2px solid rgb(255, 194, 88);
+        padding: 26px;
+        background-color: white;
+        top: 25%;
+        transform: translateX(23%);
+        border-radius: 16px;
+    }
+}
+.btn-log {
+    background-color: #FFE5B4;
+    border: 1px solid rgb(255, 194, 88);
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.btn-log:hover {
+    background-color: #f5e6cb;
+}
+a:check {
+    background-color: #FFE5B4;
+}
