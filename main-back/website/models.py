@@ -12,7 +12,7 @@ class Profile(models.Model):
     phone = models.CharField(max_length=20, null=True, blank=True)
     telegram = models.CharField(max_length=32, null=True, blank=True)
     linkedin = models.URLField(null=True, blank=True)
-    skills = models.ManyToManyField(Skill)
+    skills = models.ManyToManyField(Skill, blank=True)
     is_mentor = models.BooleanField(default=False)
 
 
@@ -26,7 +26,7 @@ class Project(models.Model):
 class Role(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    skills = models.ManyToManyField(Skill)
+    skills = models.ManyToManyField(Skill, blank=True)
     project = models.ForeignKey(Project, on_delete=models.DO_NOTHING)
     is_active = models.BooleanField(default=True)
 
