@@ -9,7 +9,7 @@ from website.models import Project, Participation, Invitation, JoinRequest
 
 class RegisterView(generic.CreateView):
     form_class = RegistrationForm
-    template_name = 'test_app/register.html'
+    template_name = 'website/register.html'
 
     def get_success_url(self):
         return reverse('website:login')
@@ -18,11 +18,11 @@ class RegisterView(generic.CreateView):
 class ProfileView(generic.DetailView):
     model = User
     context_object_name = 'showed_user'
-    template_name = 'test_app/profile.html'
+    template_name = 'website/profile.html'
 
 
 class UserProjectsView(generic.ListView):
-    template_name = 'test_app/user_projects.html'
+    template_name = 'website/user_projects.html'
     context_object_name = 'projects'
     requested_user: User
 
@@ -50,11 +50,11 @@ class UserProjectsView(generic.ListView):
 
 class ProjectListView(generic.ListView):
     model = Project
-    template_name = 'test_app/projects.html'
+    template_name = 'website/projects.html'
     context_object_name = 'projects'
 
 
 class UserListView(generic.ListView):
     model = User
-    template_name = 'test_app/users.html'
+    template_name = 'website/users.html'
     context_object_name = 'users'
