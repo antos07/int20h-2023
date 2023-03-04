@@ -15,4 +15,5 @@ class RegisterView(generic.CreateView):
 
 class ProfileView(generic.DetailView):
     model = User
+    context_object_name = 'showed_user'
     template_name = 'test_app/profile.html'
