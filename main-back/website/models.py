@@ -76,4 +76,4 @@ class JoinRequest(models.Model):
     comment = models.TextField(blank=True)
 
     def __str__(self):
-        return f"From {self.user} to {self.role}"
+        return f"Join request from {self.user} for {self.role}"
