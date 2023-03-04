@@ -61,3 +61,19 @@ class Invitation(models.Model):
 
     def __str__(self):
         return f"From {self.user} to {self.role}"
+
+
+class JoinRequest(models.Model):
+    APPROVED = 'approved'
+    DECLINED = 'declined'
+    PENDING = 'pending'
+    STATUS_CHOICES = [APPROVED, DECLINED, PENDING]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True, editable=False, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=PENDING, blank=False)
+    comment = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"From {self.user} to {self.role}"
