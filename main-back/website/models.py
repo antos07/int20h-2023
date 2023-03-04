@@ -49,6 +49,10 @@ class Participation(models.Model):
     since = models.DateField()
     to = models.DateField(null=True, blank=True)
 
+    @property
+    def is_active(self):
+        return self.to is None
+
     def __str__(self):
         return f"{self.user} as {self.role}"
 
