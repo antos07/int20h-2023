@@ -7,4 +7,6 @@ from website.forms import RegistrationForm
 class RegisterView(generic.CreateView):
     form_class = RegistrationForm
     template_name = 'test_app/register.html'
-    success_url = reverse('website:login')
+
+    def get_success_url(self):
+        return reverse('website:login')
