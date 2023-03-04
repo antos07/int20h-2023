@@ -46,3 +46,9 @@ class UserProjectsView(generic.ListView):
                                                      .filter(user=self.requested_user, status=JoinRequest.PENDING)
                                                      .order_by('-timestamp'))
         return context_data
+
+
+class ProjectListView(generic.ListView):
+    model = Project
+    template_name = 'test_app/projects.html'
+    context_object_name = 'projects'
