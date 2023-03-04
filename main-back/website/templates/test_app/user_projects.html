@@ -1,0 +1,22 @@
+{% extends 'test_app/base.html' %}
+
+{% block content %}
+    <h1>Invitations</h1>
+    <ul>
+        {% for pending_invitation in pending_invitations %}
+            <li>{{ pending_invitation }}</li>
+        {% endfor %}
+    </ul>
+    <h1>Join requests</h1>
+    <ul>
+        {% for pending_join_request in pending_join_requests %}
+            <li>{{ pending_join_request }}</li>
+        {% endfor %}
+    </ul>
+    <h1>Projects</h1>
+    <ul>
+        {% for project in projects %}
+            <li>{{ project }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
