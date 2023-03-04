@@ -67,7 +67,7 @@ class Invitation(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=PENDING, blank=False)
 
     def __str__(self):
-        return f"From {self.user} to {self.role}"
+        return f"Invitation of {self.user} to {self.role}"
 
 
 class JoinRequest(models.Model):
