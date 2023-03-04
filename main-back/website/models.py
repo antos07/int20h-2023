@@ -5,6 +5,9 @@ from django.db import models
 class Skill(models.Model):
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -15,12 +18,18 @@ class Profile(models.Model):
     skills = models.ManyToManyField(Skill, blank=True)
     is_mentor = models.BooleanField(default=False)
 
+    def __str__(self):
+        return str(self.user)
+
 
 class Project(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     creator = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Role(models.Model):
@@ -30,9 +39,15 @@ class Role(models.Model):
     project = models.ForeignKey(Project, on_delete=models.DO_NOTHING)
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f'{self.project}: {self.name}'
+
 
 class Participation(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     role = models.ForeignKey(Role, on_delete=models.DO_NOTHING)
     since = models.DateField()
-    to = models.DateField(null=True)
+    to = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.user} as {self.role}"
