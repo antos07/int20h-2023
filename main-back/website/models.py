@@ -51,3 +51,10 @@ class Participation(models.Model):
 
     def __str__(self):
         return f"{self.user} as {self.role}"
+
+
+class Invitation:
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    sent_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    timestamp = models.DateTimeField(auto_now_add=True, editable=False, blank=True)
