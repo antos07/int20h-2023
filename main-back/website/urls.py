@@ -1,11 +1,12 @@
 from django.contrib.auth.views import LoginView
 from django.urls import path
 
-from website.views import RegisterView
+from website.views import RegisterView, ProfileView
 
 app_name = 'website'
 
 urlpatterns = [
     path('login/', LoginView.as_view(template_name='test_app/login.html'), name='login'),
     path('register/', RegisterView.as_view(), name='register'),
+    path('profile/<int:pk>', ProfileView.as_view(), name='profile'),
 ]

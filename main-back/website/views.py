@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.urls import reverse
 from django.views import generic
 
@@ -10,3 +11,8 @@ class RegisterView(generic.CreateView):
 
     def get_success_url(self):
         return reverse('website:login')
+
+
+class ProfileView(generic.DetailView):
+    model = User
+    template_name = 'test_app/profile.html'

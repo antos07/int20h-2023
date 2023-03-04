@@ -1,0 +1,7 @@
+{% extends 'test_app/base.html' %}
+
+
+{% block content %}
+    <h1>{{ user.get_full_name }}</h1>
+    <p>{{ user.profile.about }}</p>
+{% endblock %}
