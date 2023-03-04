@@ -58,3 +58,6 @@ class Invitation:
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
     sent_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     timestamp = models.DateTimeField(auto_now_add=True, editable=False, blank=True)
+
+    def __str__(self):
+        return f"From {self.user} to {self.role}"
