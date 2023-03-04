@@ -67,7 +67,7 @@ class JoinRequest(models.Model):
     APPROVED = 'approved'
     DECLINED = 'declined'
     PENDING = 'pending'
-    STATUS_CHOICES = [APPROVED, DECLINED, PENDING]
+    STATUS_CHOICES = [(APPROVED, 'Approved'), (DECLINED, 'Declined'), (PENDING, 'Pending')]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
