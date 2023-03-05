@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import generic
 
 from website.forms import RegistrationForm
-from website.models import Project, Participation, Invitation, JoinRequest
+from website.models import Project, Participation, Invitation, JoinRequest, Skill
 
 
 class RegisterView(generic.CreateView):
@@ -52,6 +52,12 @@ class ProjectListView(generic.ListView):
     model = Project
     template_name = 'website/projects.html'
     context_object_name = 'projects'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context_data = super().get_context_data(object_list=object_list, **kwargs)
+        context_data['skills'] = Skill.objects.order_by('name').all()
+        context_data['selected_skills'] = set()
+        return context_data
 
 
 class UserListView(generic.ListView):
