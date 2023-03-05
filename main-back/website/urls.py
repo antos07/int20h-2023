@@ -1,5 +1,6 @@
 from django.contrib.auth.views import LoginView
 from django.urls import path
+from django.views.generic import RedirectView
 
 from website.views import RegisterView, ProfileView, UserProjectsView, ProjectListView, UserListView
 
@@ -12,4 +13,5 @@ urlpatterns = [
     path('users/<int:user_id>/projects', UserProjectsView.as_view(), name='user_projects'),
     path('projects/', ProjectListView.as_view(), name='projects'),
     path('users/', UserListView.as_view(), name='users'),
+    path('', RedirectView.as_view(pattern_name='website:projects'))
 ]
