@@ -19,11 +19,14 @@
 
         <div class="container mt-4 justify-content-center">
             <div class="round">
-                {% for skill in skills %}
-                    <input type="checkbox" {% if skill in selected_skills %}checked{% endif %}
-                           id="skill_{{ skill.id }}"/>
-                    <label for="skill_{{ skill.id }}" class="chechbox-label">{{ skill.name }}</label><br>
-                {% endfor %}
+                <form action="" method="get">
+                    {% for skill in skills %}
+                        <input type="checkbox" {% if skill in selected_skills %}checked{% endif %}
+                               id="skill_{{ skill.id }}" name="skill_{{ skill.id }}"/>
+                        <label for="skill_{{ skill.id }}" class="chechbox-label">{{ skill.name }}</label><br>
+                    {% endfor %}
+                    <input type="submit" class="btn btn-success m-2" value="Filter">
+                </form>
             </div>
         </div>
     </nav>
