@@ -28,6 +28,10 @@ class Project(models.Model):
     creator = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     is_active = models.BooleanField(default=True)
 
+    @property
+    def roles_string(self):
+        return '/'.join(role.name for role in self.role_set.all())
+
     def __str__(self):
         return self.name
 
