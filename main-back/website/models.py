@@ -43,6 +43,14 @@ class Role(models.Model):
     project = models.ForeignKey(Project, on_delete=models.DO_NOTHING)
     is_active = models.BooleanField(default=True)
 
+    @property
+    def skills_string(self):
+        return '/'.join(skill.name for skill in self.skills.all())
+    
+    @property
+    def is_vacant(self):
+        return not self.participation_set.filter(to__isnull=True).exists()
+
     def __str__(self):
         return f'{self.project}: {self.name}'
 
