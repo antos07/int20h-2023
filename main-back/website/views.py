@@ -1,8 +1,9 @@
 from typing import Iterable
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views import generic
 
@@ -96,3 +97,14 @@ class UserListView(generic.ListView):
 class ProjectView(generic.DetailView):
     model = Project
     template_name = 'website/project_detail.html'
+
+
+@login_required(login_url='/login')
+def create_join_request(request, role_id: int):
+    user = request.user
+    role = get_object_or_404(Role, pk=role_id)
+
+    if not JoinRequest.objects.filter(user=user, role=role):
+        JoinRequest.objects.create(user=user, role=role)
+
+    return redirect(reverse('website:user_projects', args=(user.id, )))
