@@ -3,7 +3,7 @@ from django.urls import path
 from django.views.generic import RedirectView
 
 from website.views import RegisterView, ProfileView, UserProjectsView, ProjectListView, UserListView, ProjectView, \
-    create_join_request
+    create_join_request, generate_cv
 
 app_name = 'website'
 
@@ -17,5 +17,6 @@ urlpatterns = [
     path('projects/join/role/<int:role_id>', create_join_request, name='join_request'),
     path('projects/', ProjectListView.as_view(), name='projects'),
     path('projects/<int:pk>', ProjectView.as_view(), name='project_detail'),
-    path('', RedirectView.as_view(pattern_name='website:projects'), name='home')
+    path('cv', generate_cv, name='cv'),
+    path('', RedirectView.as_view(pattern_name='website:projects'), name='home'),
 ]

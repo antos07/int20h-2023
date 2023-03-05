@@ -1,8 +1,9 @@
 from typing import Iterable
 
+import requests
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views import generic
@@ -107,4 +108,36 @@ def create_join_request(request, role_id: int):
     if not JoinRequest.objects.filter(user=user, role=role):
         JoinRequest.objects.create(user=user, role=role)
 
-    return redirect(reverse('website:user_projects', args=(user.id, )))
+    return redirect(reverse('website:user_projects', args=(user.id,)))
+
+
+@login_required(login_url='/login')
+def generate_cv(request):
+    user = request.user
+
+    cv_data = {
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'image_url': 'https://www.zdnet.com/a/img/resize/22996632853fd12eeffc973ecdafa55e4439ef6c/2022/09/05/c70fdeec-fd32-4d1c-96fe-d5dfe2f63da4/img-1001.jpg?auto=webp&fit=crop&height=1200&width=1200',
+        'email': user.email,
+        'linkedIn': user.profile.linkedin,
+        'phoneNumber': user.profile.phone,
+        'telegram': user.profile.telegram,
+        'skills': [skill.name for skill in user.profile.skills.all()],
+        'projects': [
+            {
+                'name': project.role.project.name,
+                'role': project.role.name,
+                'since': str(project.since),
+                'till': str(project.to) if project.to else None,
+                'roleDescription': project.role.description,
+                'projectUrl': reverse('website:project_detail', args=(project.role.project.pk,))
+            }
+            for project in user.participation_set.all()
+        ]
+    }
+
+    response = requests.post('http://apiint20h-env.eba-43pkh2q3.ap-northeast-1.elasticbeanstalk.com/pdf/generate',
+                             json=cv_data)
+    response.raise_for_status()
+    return HttpResponse(response.content, content_type='application/pdf')
