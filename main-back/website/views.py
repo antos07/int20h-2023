@@ -137,7 +137,6 @@ def generate_cv(request):
         ]
     }
 
-    response = requests.post('http://apiint20h-env.eba-43pkh2q3.ap-northeast-1.elasticbeanstalk.com/pdf/generate',
-                             json=cv_data)
+    response = requests.get('http://aaaaaaaaaaaaaaaaaaaaa-env.eba-dhwmvmhq.ap-northeast-1.elasticbeanstalk.com/pdf/generate')
     response.raise_for_status()
     return HttpResponse(response.content, content_type='application/pdf')
