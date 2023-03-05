@@ -10,12 +10,13 @@
     border-bottom: 1px solid rgb(193, 189, 189);
 }
 .head-button-wrapper {
-    color: black;
+    --bs-nav-link-color: rgb(71, 48, 7) !important;
+    --bs-nav-link-hover-color: rgb(71, 48, 7) !important;
     border-radius: 10px;
-    border: 1px solid green;
+    border: 1px solid rgb(255, 194, 88);
 }
 .head-button-wrapper:hover {
-    background-color: rgb(174, 196, 174);
+    background-color: #f5e6cb;
 }
 .logo:hover {
     width: 30px;
@@ -29,9 +30,11 @@
         min-height: 1000px;
         align-content: center; 
         font-family: 'OpenSans, OpenSans-Regular';
-        background-position: center;
+        background-image: url("reg-back.png");
+        background-position: center; 
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: cover; 
+
 }
 .forms {
     margin-right: 20%;
@@ -69,9 +72,9 @@
     background-color: #f5e6cb;
 }
 .form-field-wrapper>input {
-    display: block;
+display: block;
   width: 100%;
-  padding: 0.375rem 0.75rem;
+  padding: 0;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -84,4 +87,141 @@
   appearance: none;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.img-profile {
+max-height: 40px;
+}
+.profile-icon {
+    margin-left: 3px;
+    margin-top: 0 !important;
+    width: 29px; 
+    height: 29px;
+}
+.profile-icon:hover {
+    margin-left: 0;
+    width: 32px; 
+    height: 32px;
+}
+.aParent div {
+    float: left;
+    clear: none; 
+}
+.btn-profile-subpage {
+    width: 50%;
+    height: 40px;
+    padding-top: 6px;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid rgb(189, 189, 189);
+}
+.btn-profile-subpage:hover {
+    font-size: 18px;
+}
+.page-divider {
+    padding-left: 40px;
+    justify-content: center;
+    min-height: 200px;
+}
+.one {
+    float: left;  
+    width:40%;
+}
+.two {
+    float: left;
+    width:60%;
+}
+.avatar {
+    height: 170px;
+    width: 170px;
+    border-radius: 10%;
+    margin-top: 30px;
+}
+.skills-contacts {
+    margin-top: 20px;
+    max-width: 170px;
+}
+.info-name {
+    margin-top: 60px;
+    margin-left: 20px;
+    font-size: 24px;
+}
+.info-email {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+    .one {
+        float: none;  
+        border-right: none;
+        width: 100%;
+        max-width: 84%;
+    }
+    .two {
+        float: none;  
+        width: 100%;
+        max-height: 100px !important;
+        max-width: 84%;
+    }
+    .avatar {
+        height: 170px;
+        width: 170px;
+        border-radius: 10%;
+        margin-top: 20px;
+        left: 50%;
+        transform: translateX(38%);
+    }
+    .skills-contacts {
+        margin-top: 5px;
+        margin-left: 10px;
+        text-align: left;
+        max-width: 100%;
+    }
+    .info-name {
+        left: 50%;
+        transform: translateX(23%);
+        margin-top: 20px;
+        font-size: 22px;
+    }
+    .info-email {
+        margin-top: 0 !important;
+        left: 50%;
+        transform: translateX(23%);
+        font-size: 18px;
+    }
+}
+.profile-link {
+    text-decoration: underline;
+    color: grey;
+    font-size: 16px;
+    margin-top: 1px;
+}
+.profile-actions {
+    margin-left: 30px;
+}
+.description {
+    margin-top: 10px;
+}
+.category-project {
+    text-align: center;
+}
+.project-frame {
+    border: 2px solid rgb(255, 194, 88);
+    border-radius: 8px;
+}
+.button-cancel {
+    width:40px; 
+    height:40px; 
+    border-width: 0;
+    border-radius: 3rem;
+}
+.prof-title {
+    line-height: 5px;
+}
+.prof-roles {
+    font-size: 12px;
+    line-height: 2px;
+}
+.prof-descrip {
+    font-size: 14px;
 }
