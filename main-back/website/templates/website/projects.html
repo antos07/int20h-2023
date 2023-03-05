@@ -1,13 +1,53 @@
 {% extends 'website/base.html' %}
+{% load static %}
+
+{% block additionalHeadElements %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+{% endblock %}
 
 {% block content %}
+    <a href="#" class="profile-link" style="font-size: 14px;" onclick="menuDropDown()">Skills' list</a><br><br>
+
+    <nav class="navigation-menu" style="height: 100%" id="nav-menu">
+        <div class="container mt-2 ms-2" style="margin: auto;">
+            <a href="#" class="close-nav" onclick="menuDropDown()">Hide</a><br><br>
+        </div>
+
+        <a class="mainPage-link">Skills</a>
+        <hr class="main-page-underline">
+
+
+        <div class="container mt-4 justify-content-center">
+            <div class="round">
+                <form action="" method="get">
+                    {% for skill in skills %}
+                        <input type="checkbox" {% if skill in selected_skills %}checked{% endif %}
+                               id="skill_{{ skill.id }}" name="skill_{{ skill.id }}"/>
+                        <label for="skill_{{ skill.id }}" class="chechbox-label">{{ skill.name }}</label><br>
+                    {% endfor %}
+                    <input type="submit" class="btn btn-success m-2" value="Filter">
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
     {% for project in projects %}
-        <h1>{{ project.name }}</h1>
-        <ul>
-            {% for role in project.role_set.all %}
-                <li>{{ role.name }}</li>
-            {% endfor %}
-        </ul>
+        <a class="row container mt-4 project-frame m-auto"
+           style="align-items: center; height: 120px;text-decoration: none; color: #333333" href="{% url 'website:project_detail' project.id %}">
+            <div class="col">
+                <p class="text-sm-start ms-4 me-4 fs-4 mt-2 prof-title">{{ project.name }}</p>
+                <p class="text-sm-start ms-4 me-4 prof-descrip">{{ project.description }}</p>
+                <p class="text-sm-start ms-4 me-4 prof-roles">{{ project.roles_string }}</p>
+
+            </div>
+            <div class="col align-content-center" style="width: 40px; max-width: 40px; padding-left: 0;">
+                <button type="button" class="button-cancel">
+                    <img src="{% static 'images/cross.png' %}" class="rounded mx-auto d-block" width="18px"
+                         height="18px">
+                </button>
+            </div>
+        </a>
     {% endfor %}
 
 {% endblock %}

@@ -1,22 +1,105 @@
 {% extends 'website/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Invitations</h1>
-    <ul>
-        {% for pending_invitation in pending_invitations %}
-            <li>{{ pending_invitation }}</li>
-        {% endfor %}
-    </ul>
-    <h1>Join requests</h1>
-    <ul>
-        {% for pending_join_request in pending_join_requests %}
-            <li>{{ pending_join_request }}</li>
-        {% endfor %}
-    </ul>
-    <h1>Projects</h1>
-    <ul>
+    <a class="container profile-actions">
+        <div class="aParent">
+            <a class="btn-profile-subpage" style="border-right: 1px solid rgb(189, 189, 189);"
+               href="{% url 'website:profile' requested_user.id %}">
+                Info
+            </a>
+            <a class="btn-profile-subpage" href="{% url 'website:user_projects' requested_user.id %}">
+                Projects
+            </a>
+        </div>
+
+        <br><br><br>
+        <a href="#" class="profile-link">Create project</a><br><br>
+        <a href="#" class="profile-link">Manage my own projects</a>
+
+        <br><br><br><br>
+
+        {% if requested_user == user %}
+            <h1 class="category-project">Invites</h1>
+            {% for invite in pending_invitations %}
+                <div class="row container mt-4 project-frame m-auto" style="align-items: center; height: 120px;">
+                    <div class="col">
+                        <p class="text-sm-start ms-4 me-4 fs-4 mt-2 prof-title">{{ invite.role.project.name }}</p>
+                        <p class="text-sm-start ms-4 me-4 prof-descrip">{{ invite.role.name }}</p>
+                        <p class="text-sm-start ms-4 me-4 prof-roles">{{ invite.role.project.description }}</p>
+                    </div>
+                    <div class="col align-content-center" style="width: 40px; max-width: 40px; padding-left: 0;">
+                        <button type="button" class="button-cancel">
+                            <img src="{% static 'images/cross.png' %}" class="rounded mx-auto d-block" width="18px"
+                                 height="18px">
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <br><br>
+            <h1 class="category-project">Join Requests</h1>
+            {% for join_request in pending_join_requests %}
+                <div class="row container mt-4 project-frame m-auto" style="align-items: center; height: 120px;">
+                    <div class="col">
+                        <p class="text-sm-start ms-4 me-4 fs-4 mt-2 prof-title">{{ join_request.role.project.name }}</p>
+                        <p class="text-sm-start ms-4 me-4 prof-descrip">{{ join_request.role.name }}</p>
+                        <p class="text-sm-start ms-4 me-4 prof-roles">{{ join_request.role.project.description }}</p>
+                    </div>
+                    <div class="col align-content-center" style="width: 40px; max-width: 40px; padding-left: 0;">
+                        <button type="button" class="button-cancel">
+                            <img src="{% static 'images/cross.png' %}" class="rounded mx-auto d-block" width="18px"
+                                 height="18px">
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <br><br>
+        {% endif %}
+
+        <h1 class="category-project">Active</h1>
         {% for project in projects %}
-            <li>{{ project }}</li>
+            {% if project.is_active %}
+                <a class="row container mt-4 project-frame m-auto"
+                   style="align-items: center; height: 120px; text-decoration: none; color: #333333"
+                   href="{% url 'website:project_detail' project.role.project.id %}">
+                    <div class="col">
+                        <p class="text-sm-start ms-4 me-4 fs-4 mt-2 prof-title">{{ project.role.project.name }}
+                            ({{ project.since }} - Present)</p>
+                        <p class="text-sm-start ms-4 me-4 prof-descrip">{{ project.role.name }}</p>
+                        <p class="text-sm-start ms-4 me-4 prof-roles">{{ project.role.project.description }}</p>
+                    </div>
+                    <div class="col align-content-center" style="width: 40px; max-width: 40px; padding-left: 0;">
+                        <button type="button" class="button-cancel">
+                            <img src="{% static 'images/cross.png' %}" class="rounded mx-auto d-block" width="18px"
+                                 height="18px">
+                        </button>
+                    </div>
+                </a>
+            {% endif %}
         {% endfor %}
-    </ul>
+
+        <br>
+        <br>
+
+        <h1 class="category-project">Finished</h1>
+        {% for project in projects %}
+            {% if not project.is_active %}
+                <a class="row container mt-4 project-frame m-auto"
+                   style="align-items: center; height: 120px; text-decoration: none; color: #333333"
+                   href="{% url 'website:project_detail' project.role.project.id %}">
+                    <div class="col">
+                        <p class="text-sm-start ms-4 me-4 fs-4 mt-2 prof-title">{{ project.role.project.name }}
+                            ({{ project.since }} - {{ project.to }})</p>
+                        <p class="text-sm-start ms-4 me-4 prof-descrip">{{ project.role.name }}</p>
+                        <p class="text-sm-start ms-4 me-4 prof-roles">{{ project.role.project.description }}</p>
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+
+        <br>
+        <br>
+    </div>
 {% endblock %}
