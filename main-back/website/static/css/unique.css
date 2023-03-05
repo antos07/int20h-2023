@@ -102,20 +102,22 @@ max-height: 40px;
     width: 32px; 
     height: 32px;
 }
-.aParent div {
+.aParent a {
     float: left;
-    clear: none; 
+    clear: none;
 }
 .btn-profile-subpage {
     width: 50%;
     height: 40px;
     padding-top: 6px;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
+    color: #333333;
     border-bottom: 1px solid rgb(189, 189, 189);
+    text-decoration: none;
 }
 .btn-profile-subpage:hover {
-    font-size: 18px;
+    font-size: 20px;
 }
 .page-divider {
     padding-left: 40px;

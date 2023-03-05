@@ -2,6 +2,59 @@
 
 
 {% block content %}
-    <h1>{{ showed_user.get_full_name }}</h1>
-    <p>{{ showed_user.profile.about }}</p>
+
+    <div class="aParent">
+        <a class="btn-profile-subpage" style="border-right: 1px solid rgb(189, 189, 189);"
+           href="{% url 'website:profile' showed_user.id %}">
+            Info
+        </a>
+        <a class="btn-profile-subpage" href="{% url 'website:user_projects' showed_user.id %}">
+            Projects
+        </a>
+    </div>
+
+    <div class="page-divider mb-5">
+        <div class="one">
+            <img src="photo.jpg" class="avatar">
+        </div>
+        <div class="two">
+            <p class="info-name">{{ showed_user.get_full_name }}</p>
+            <p class="info-email">{{ showed_user.email }}</p>
+        </div>
+    </div>
+
+
+    <div class="page-divider mb-5">
+        <div class="one">
+            <p class="skills-contacts">Phone number: {{ showed_user.profile.phone }}</p>
+            <p class="skills-contacts">Telegram: {{ showed_user.profile.telegram }}</p>
+            <p class="skills-contacts">LinkedIn: {{ showed_user.profile.linkedin }}</p>
+            <p class="skills-contacts">GitHub: {{ showed_user.profile.github }}</p>
+        </div>
+        <div class="two">
+            <p class="description">{{ showed_user.profile.about }}</p>
+        </div>
+    </div>
+
+    <div class="container profile-actions">
+        {% if showed_user == user %}
+            <a href="#" class="profile-link">Edit profile</a><br><br>
+            <a href="#" class="profile-link">Generate CV</a><br><br>
+            <a href="#" class="profile-link">Exit</a><br><br><br><br>
+        {% endif %}
+
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               style="background-color: #FFE5B4; color: rgb(71, 48, 7); border-color: rgb(255, 194, 88);">
+                Invite to project
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                {% for project in user.project_set.all %}
+                    <a class="dropdown-item" href="#">{{ project.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

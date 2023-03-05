@@ -16,7 +16,7 @@
 
 <body style="background-color:#f2f2f0;">
 <div class="container-fluid" style="border-radius: 0.275rem; background-color: white; min-height: 90px;">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 head">
+        <header class="d-flex flex-wrap justify-content-center py-3 head">
           <p class="d-flex align-items-center mb-3 ms-4 me-4 mt-1 mb-md-0 me-md-auto text-dark text-decoration-none">
             <img class="bi me-2" width="40" height="32" src="{% static 'images/project-logo.png'%}">
             <span class="fs-4 me-3">Simple header</span>
@@ -24,8 +24,9 @@
     
           <ul class="nav nav-pills me-4 mt-1 ms-4">
             <li class="nav-item head-button-wrapper me-1"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item head-button-wrapper me-1 ms-2"><a href="#" class="nav-link">Features</a></li>
-            <li class="nav-item head-button-wrapper ms-2"><a href="#" class="nav-link">About</a></li>
+            <li class="nav-item head-button-wrapper me-1 ms-2"><a href="#" class="nav-link">Projects</a></li>
+            <li class="nav-item ms-2"><a href="#" class="nav-link img-profile">
+            <img src="{% static 'images/profile.png' %}" class="profile-icon"></a></li>
           </ul>
         </header>
 </div>
@@ -34,7 +35,7 @@
   {% block content %}{% endblock %}
 </div>
 
-<div class="container-fluid" style="background-color: white; height: 90px">
+<div class="container-fluid mt-2" style="background-color: white; height: 90px">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
       <div class="col-md-4 d-flex align-items-center ms-3 mt-3">
         <p href="/" class="mb-3 me-2 text-muted text-decoration-none lh-1">
