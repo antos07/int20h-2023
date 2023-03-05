@@ -24,8 +24,8 @@
     
           <ul class="nav nav-pills me-4 mt-1 ms-4">
             <li class="nav-item head-button-wrapper me-1"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item head-button-wrapper me-1 ms-2"><a href="#" class="nav-link">Projects</a></li>
-            <li class="nav-item ms-2"><a href="#" class="nav-link img-profile">
+            <li class="nav-item head-button-wrapper me-1 ms-2"><a href="{% url 'website:projects' %}" class="nav-link">Projects</a></li>
+            <li class="nav-item ms-2"><a href="{% url 'website:profile' user.id %}" class="nav-link img-profile">
             <img src="{% static 'images/profile.png' %}" class="profile-icon"></a></li>
           </ul>
         </header>
