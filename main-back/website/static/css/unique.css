@@ -30,7 +30,6 @@
         min-height: 1000px;
         align-content: center;
         font-family: 'OpenSans, OpenSans-Regular';
-        background-image: url("reg-back.png");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -235,7 +234,7 @@ max-height: 40px;
 	position: fixed;
 	height: 100%;
 	width: 250px;
-	top: 90px;
+    top: 0px;
 	left: 0px;
 	background: #f4ead7;
     display: none;
