@@ -28,7 +28,7 @@
 }
 .reg-back {
         min-height: 1000px;
-        align-content: center; 
+        align-content: center;
         font-family: 'OpenSans, OpenSans-Regular';
         background-image: url("reg-back.png");
         background-position: center;
@@ -219,10 +219,10 @@ max-height: 40px;
 }
 .prof-roles {
     font-size: 12px;
-    line-height: 2px;
+    line-height: 4px;
 }
 .prof-descrip {
-    font-size: 14px;
+    font-size: 18px;
 }
 .img-profile {
 max-height: 40px;
