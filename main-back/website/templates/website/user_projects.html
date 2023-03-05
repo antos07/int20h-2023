@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="container profile-actions">
+    <a class="container profile-actions">
         <div class="aParent">
             <a class="btn-profile-subpage" style="border-right: 1px solid rgb(189, 189, 189);"
                href="{% url 'website:profile' requested_user.id %}">
@@ -61,10 +61,12 @@
         <h1 class="category-project">Active</h1>
         {% for project in projects %}
             {% if project.is_active %}
-                <div class="row container mt-4 project-frame m-auto" style="align-items: center; height: 120px;">
+                <a class="row container mt-4 project-frame m-auto"
+                   style="align-items: center; height: 120px; text-decoration: none; color: #333333"
+                   href="{% url 'website:project_detail' project.role.project.id %}">
                     <div class="col">
                         <p class="text-sm-start ms-4 me-4 fs-4 mt-2 prof-title">{{ project.role.project.name }}
-                            ({{ project.since }} - 'Project')</p>
+                            ({{ project.since }} - Present)</p>
                         <p class="text-sm-start ms-4 me-4 prof-descrip">{{ project.role.name }}</p>
                         <p class="text-sm-start ms-4 me-4 prof-roles">{{ project.role.project.description }}</p>
                     </div>
@@ -74,7 +76,7 @@
                                  height="18px">
                         </button>
                     </div>
-                </div>
+                </a>
             {% endif %}
         {% endfor %}
 
@@ -84,14 +86,16 @@
         <h1 class="category-project">Finished</h1>
         {% for project in projects %}
             {% if not project.is_active %}
-                <div class="row container mt-4 project-frame m-auto" style="align-items: center; height: 120px;">
+                <a class="row container mt-4 project-frame m-auto"
+                   style="align-items: center; height: 120px; text-decoration: none; color: #333333"
+                   href="{% url 'website:project_detail' project.role.project.id %}">
                     <div class="col">
                         <p class="text-sm-start ms-4 me-4 fs-4 mt-2 prof-title">{{ project.role.project.name }}
                             ({{ project.since }} - {{ project.to }})</p>
                         <p class="text-sm-start ms-4 me-4 prof-descrip">{{ project.role.name }}</p>
                         <p class="text-sm-start ms-4 me-4 prof-roles">{{ project.role.project.description }}</p>
                     </div>
-                </div>
+                </a>
             {% endif %}
         {% endfor %}
 

@@ -91,3 +91,8 @@ class UserListView(generic.ListView):
     model = User
     template_name = 'website/users.html'
     context_object_name = 'users'
+
+
+class ProjectView(generic.DetailView):
+    model = Project
+    template_name = 'website/project_detail.html'
