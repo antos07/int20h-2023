@@ -3,7 +3,10 @@
 
 {% block content %}
     <div class="container mt-5">
-        <h1 class="projTitle">{{ project.name }} <img class="mentor-verify" src="{% static 'images/verify.png' %}"></h1>
+        <h1 class="projTitle">{{ project.name }}
+            {% if project.creator.profile.is_mentor %}
+                <img class="mentor-verify" src="{% static 'images/verify.png' %}">
+            {% endif %} </h1>
     </div>
     <div class="container mt-5">
         <p class="projDescr">{{ project.description }}</p>
@@ -44,12 +47,12 @@
         {% for role in project.role_set.all %}
             {% if not role.is_vacant %}
                 <div class="row container mt-4 project-frame m-auto"
-                   style="align-items: center; height: 120px;text-decoration: none; color: #333333"">
-                    <div class="col">
-                        <p class="text-sm-start ms-4 me-4 fs-4 mt-2 prof-title">{{ role.name }}</p>
-                        <p class="text-sm-start ms-4 me-4 prof-descrip">{{ role.description }}</p>
-                        <p class="text-sm-start ms-4 me-4 prof-roles">{{ role.skills_string }}</p>
-                    </div>
+                     style="align-items: center; height: 120px;text-decoration: none; color: #333333"">
+                <div class="col">
+                    <p class="text-sm-start ms-4 me-4 fs-4 mt-2 prof-title">{{ role.name }}</p>
+                    <p class="text-sm-start ms-4 me-4 prof-descrip">{{ role.description }}</p>
+                    <p class="text-sm-start ms-4 me-4 prof-roles">{{ role.skills_string }}</p>
+                </div>
                 </div>
             {% endif %}
         {% endfor %}
