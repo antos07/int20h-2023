@@ -10,11 +10,15 @@
 
     <nav class="navigation-menu" style="height: 100%" id="nav-menu">
         <div class="container mt-2 ms-2" style="margin: auto;">
-            <a href="#" class="close-nav" onclick="menuDropDown()">Hide</a><br><br>
+            <a href="#" class="close-nav" onclick="menuDropDown()">Hide</a><br>
+            {% if user.id %}
+                <a href="?{% for skill in user.profile.skills.all %}skill_{{ skill.id }}=on&{% endfor %}
+            {% endif %}
+            " class="close-nav">Find for my skills</a><br><br>
         </div>
 
-        <a class="mainPage-link">Skills</a>
-        <hr class="main-page-underline">
+        <a class="mainPage-link mt-5">Skills</a><br>
+        <hr class="main-page-underline mt-5">
 
 
         <div class="container mt-4 justify-content-center">
@@ -34,7 +38,8 @@
 
     {% for project in projects %}
         <a class="row container mt-4 project-frame m-auto"
-           style="align-items: center; height: 120px;text-decoration: none; color: #333333" href="{% url 'website:project_detail' project.id %}">
+           style="align-items: center; height: 120px;text-decoration: none; color: #333333"
+           href="{% url 'website:project_detail' project.id %}">
             <div class="col">
                 <p class="text-sm-start ms-4 me-4 fs-4 mt-2 prof-title">{{ project.name }}</p>
                 <p class="text-sm-start ms-4 me-4 prof-descrip">{{ project.description }}</p>
